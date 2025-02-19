@@ -4,11 +4,11 @@ import { CreateMovieActorDto } from '../ports/in/dto/movie-actor.dto';
 
 @Injectable()
 export class MovieActorService {
-  private movieActors: MovieActorEntity[] = [];
+  private entities: MovieActorEntity[] = [];
 
   create(createMovieActorDto: CreateMovieActorDto): MovieActorEntity {
-    const moveActor = new MovieActorEntity(createMovieActorDto.nameActor);
-    this.movieActors.push(moveActor);
-    return moveActor;
+    const entity = new MovieActorEntity(createMovieActorDto.nameActor);
+    this.entities.push(entity);
+    return entity;
   }
 }

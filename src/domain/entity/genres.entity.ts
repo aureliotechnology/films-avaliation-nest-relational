@@ -2,24 +2,24 @@ import { v4 as uuidv4 } from 'uuid';
 import * as Joi from 'joi';
 
 interface GenresInput {
-  nameGenres: string;
+  nameGenere: string;
 }
 
 export class GenresEntity {
   public readonly id: string;
-  public readonly nameGenres: string;
+  public readonly nameGenere: string;
 
   private static schema = Joi.object<GenresInput>({
-    nameGenres: Joi.string().trim().min(1).required().messages({
-      'string.base': `'nameGenres' must be a string.`,
-      'string.empty': `'nameGenres' cannot be empty.`,
-      'any.required': `'nameGenres' is required.`,
+    nameGenere: Joi.string().trim().min(1).required().messages({
+      'string.base': `'nameGenere' must be a string.`,
+      'string.empty': `'nameGenere' cannot be empty.`,
+      'any.required': `'nameGenere' is required.`,
     }),
   });
 
-  constructor(nameGenres: string) {
+  constructor(nameGenere: string) {
     const result: Joi.ValidationResult<GenresInput> =
-      GenresEntity.schema.validate({ nameGenres }, { abortEarly: false });
+      GenresEntity.schema.validate({ nameGenere }, { abortEarly: false });
 
     if (result.error) {
       throw new Error(
@@ -29,6 +29,6 @@ export class GenresEntity {
 
     const validated: GenresInput = result.value;
     this.id = uuidv4();
-    this.nameGenres = validated.nameGenres;
+    this.nameGenere = validated.nameGenere;
   }
 }
